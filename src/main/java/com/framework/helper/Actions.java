@@ -2,15 +2,8 @@ package com.framework.helper;
 
 import com.framework.hooks.DriverFactory;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.File;
-import java.time.Duration;
-import java.util.function.BooleanSupplier;
-
-public class Waiter {
-
+public class Actions {
 
     public static void click(By locator) {
         WebDriver driver = DriverFactory.getDriver();

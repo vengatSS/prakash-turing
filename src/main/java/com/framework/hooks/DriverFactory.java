@@ -34,7 +34,9 @@ public class DriverFactory {
 
                 }
                 options.addArguments("--window-size=1920,1080");
-                options.addArguments("--incognito");
+                options.addArguments("user-data-dir=C:/Users/YOUR_USER/AppData/Local/Google/Chrome/User Data");
+                options.addArguments("profile-directory=Default");
+//                options.addArguments("--incognito");
                 options.addArguments("--disable-gpu");
                 options.addArguments("--no-sandbox");
                 options.addArguments("--disable-dev-shm-usage");
