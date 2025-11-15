@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>Turning-Automation-Script</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>google-api-services</id>
+            <url>https://maven.google.com/</url>
+        </repository>
+    </repositories>
+    <dependencies>
+
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.37.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>7.30.0</version>
+        </dependency>
+
+        <!-- TestNG -->
+        <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.11.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>6.3.2</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.25.2</version>
+        </dependency>
+
+        <!-- Log4j API (required with core) -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.24.3</version>
+        </dependency>
+
+        <!-- Bridge: routes SLF4J logs to Log4j2 -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j2-impl</artifactId>
+            <version>2.24.3</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>7.30.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/tech.grasshopper/extentreports-cucumber7-adapter -->
+        <dependency>
+            <groupId>tech.grasshopper</groupId>
+            <artifactId>extentreports-cucumber7-adapter</artifactId>
+            <version>1.14.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.20.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/net.masterthought/cucumber-reporting -->
+        <dependency>
+            <groupId>net.masterthought</groupId>
+            <artifactId>cucumber-reporting</artifactId>
+            <version>5.8.4</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.42</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>5.5.6</version>
+        </dependency>
+
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.3.2</version>
+            </plugin>
+            <!-- Maven Compiler Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.1.2</version>
+                <configuration>
+                    <printSummary>true</printSummary>
+                    <reportFormat>brief</reportFormat>
+                    <redirectTestOutputToFile>false</redirectTestOutputToFile>
+                    <forkCount>1</forkCount>
+                    <reuseForks>true</reuseForks>
+                    <testFailureIgnore>true</testFailureIgnore>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>net.masterthought</groupId>
+                <artifactId>maven-cucumber-reporting</artifactId>
+                <version>5.7.0</version>
+                <executions>
+                    <execution>
+                        <id>cucumber-report</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <projectName>Bdd Framework Report</projectName>
+                            <buildNumber>1</buildNumber>
+                            <outputDirectory>${project.build.directory}/cucumber-html-reports</outputDirectory>
+                            <jsonFiles>
+                                <param>${project.build.directory}/cucumber-report/cucumber.json</param>
+                            </jsonFiles>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
